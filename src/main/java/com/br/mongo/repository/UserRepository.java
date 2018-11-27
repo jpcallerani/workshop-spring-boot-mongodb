@@ -7,7 +7,5 @@ import com.br.mongo.domain.User;
 
 @Repository
 public interface UserRepository extends MongoRepository<User, String> {
-
-	
 	
 }
