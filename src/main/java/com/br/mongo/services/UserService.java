@@ -30,11 +30,11 @@ public class UserService {
 	 * @param id
 	 * @return
 	 */
-	public User findById(String id ) {
-		 Optional<User> obj = repo.findById(id);  
-		 return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
+	public User findById(String id) {
+		Optional<User> obj = repo.findById(id);
+		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
 	}
-	
+
 	/**
 	 * 
 	 * @param obj
@@ -43,7 +43,7 @@ public class UserService {
 	public User insert(User obj) {
 		return repo.insert(obj);
 	}
-	
+
 	/**
 	 * 
 	 * @param id
@@ -52,7 +52,15 @@ public class UserService {
 		findById(id);
 		repo.deleteById(id);
 	}
-	
+
+	public User update(User obj) {
+		Optional<User> newObj = repo.findById(obj.getId());
+		User user = newObj.get();
+		user.setName(obj.getName());
+		user.setEmail(obj.getEmail());
+		return repo.save(user);
+	}
+
 	public User fromDTO(UserDTO objDTO) {
 		return new User(objDTO.getId(), objDTO.getName(), objDTO.getEmail());
 	}
