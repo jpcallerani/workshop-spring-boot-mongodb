@@ -12,6 +12,12 @@ import com.br.mongo.services.exception.ObjectNotFoundException;
 @ControllerAdvice
 public class ResourceExceptionHandler {
 
+	/**
+	 * 
+	 * @param e
+	 * @param request
+	 * @return
+	 */
 	@ExceptionHandler(ObjectNotFoundException.class)
 	public ResponseEntity<StandardError> objectNotFound(ObjectNotFoundException e, HttpServletRequest request) {
 		HttpStatus status = HttpStatus.NOT_FOUND;
